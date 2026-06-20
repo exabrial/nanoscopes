@@ -2,27 +2,93 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>com.github.exabrial</groupId>
 		<artifactId>java25-parent-pom</artifactId>
 		<version>1-SNAPSHOT</version>
 	</parent>
-	
-	<groupId>com.github.exabrial.cdi</groupId>
+
+	<groupId>com.github.exabrial.cdi.nanoscoped</groupId>
 	<artifactId>nanoscopes-parent</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
 	<description>Collection of useful CDI scopes</description>
 
 	<licenses>
 		<license>
-			<name>EUPL-1.2</name>
-			<url>https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt</url>
+			<name>Apache-2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
-			<comments>European Union Public Licence v1.2</comments>
+			<comments>Apache License, Version 2.0</comments>
 		</license>
 	</licenses>
 
+	<developers>
+		<developer>
+			<id>exabrial</id>
+			<name>Jonathan S. Fisher</name>
+			<email>exabrial@gmail.com</email>
+			<url>https://github.com/exabrial</url>
+			<properties>
+				<dev.pgp.fingerprint>871638A21A7F2C38066471420306A354336B4F0D</dev.pgp.fingerprint>
+			</properties>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>nanoscoped</module>
+		<module>nanoscoped-testing</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>jakarta.enterprise</groupId>
+				<artifactId>jakarta.enterprise.cdi-api</artifactId>
+				<version>4.1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.interceptor</groupId>
+				<artifactId>jakarta.interceptor-api</artifactId>
+				<version>2.2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.annotation</groupId>
+				<artifactId>jakarta.annotation-api</artifactId>
+				<version>3.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.ejb</groupId>
+				<artifactId>jakarta.ejb-api</artifactId>
+				<version>4.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.exabrial.cdi</groupId>
+				<artifactId>microspike</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.openwebbeans</groupId>
+				<artifactId>openwebbeans-junit5</artifactId>
+				<version>4.0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.openwebbeans</groupId>
+				<artifactId>openwebbeans-se</artifactId>
+				<version>4.0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.openwebbeans</groupId>
+				<artifactId>openwebbeans-impl</artifactId>
+				<version>4.0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.tomitribe</groupId>
+				<artifactId>microscoped-core</artifactId>
+				<version>2.0.0-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
