@@ -9,7 +9,7 @@
 		<version>1-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.github.exabrial.cdi.nanoscoped</groupId>
+	<groupId>com.github.exabrial.cdi.nanonscopes</groupId>
 	<artifactId>nanoscopes-parent</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -38,8 +38,8 @@
 	</developers>
 
 	<modules>
-		<module>nanoscoped</module>
-		<module>nanoscoped-testing</module>
+		<module>nanoscopes</module>
+		<module>nanoscopes-testing</module>
 	</modules>
 
 	<dependencyManagement>
