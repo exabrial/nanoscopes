@@ -9,7 +9,7 @@
 		<version>1-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.github.exabrial.cdi.nanonscopes</groupId>
+	<groupId>com.github.exabrial.cdi.nanoscopes</groupId>
 	<artifactId>nanoscopes-parent</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>

@@ -1,4 +1,4 @@
-package com.github.exabrial.cdi.nanonscopes.boundaryscoped;
+package com.github.exabrial.cdi.nanoscopes.boundaryscoped;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;

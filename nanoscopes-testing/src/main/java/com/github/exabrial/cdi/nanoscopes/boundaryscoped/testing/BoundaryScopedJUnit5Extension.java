@@ -1,4 +1,4 @@
-package com.github.exabrial.cdi.nanonscopes.boundaryscoped.testing;
+package com.github.exabrial.cdi.nanoscopes.boundaryscoped.testing;
 
 import java.lang.reflect.Method;
 
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-import com.github.exabrial.cdi.nanonscopes.boundaryscoped.Boundary;
+import com.github.exabrial.cdi.nanoscopes.boundaryscoped.Boundary;
 
 import jakarta.enterprise.context.spi.CreationalContext;
 import jakarta.enterprise.inject.spi.Bean;

@@ -1,4 +1,4 @@
-package com.github.exabrial.cdi.nanonscopes.boundaryscoped.testing;
+package com.github.exabrial.cdi.nanoscopes.boundaryscoped.testing;
 
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
 import org.tomitribe.microscoped.core.ScopeContext;
 
-import com.github.exabrial.cdi.nanonscopes.boundaryscoped.BoundaryScoped;
+import com.github.exabrial.cdi.nanoscopes.boundaryscoped.BoundaryScoped;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Destroyed;

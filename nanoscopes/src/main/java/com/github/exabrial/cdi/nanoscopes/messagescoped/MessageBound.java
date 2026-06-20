@@ -1,4 +1,4 @@
-package com.github.exabrial.cdi.nanonscopes.messagescoped;
+package com.github.exabrial.cdi.nanoscopes.messagescoped;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

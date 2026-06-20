@@ -1,4 +1,4 @@
-package com.github.exabrial.cdi.nanonscopes.messagescoped;
+package com.github.exabrial.cdi.nanoscopes.messagescoped;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
