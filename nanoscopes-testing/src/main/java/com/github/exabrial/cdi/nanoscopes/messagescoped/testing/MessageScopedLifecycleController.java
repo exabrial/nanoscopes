@@ -4,11 +4,6 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.slf4j.Logger;
-import org.tomitribe.microscoped.core.ScopeContext;
-
-import com.github.exabrial.cdi.nanoscopes.messagescoped.api.scope.MessageScoped;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Destroyed;
 import jakarta.enterprise.context.Initialized;
@@ -18,10 +13,16 @@ import jakarta.enterprise.inject.spi.Bean;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
 
+import org.slf4j.Logger;
+import org.tomitribe.microscoped.core.ScopeContext;
+
+import com.github.exabrial.cdi.nanoscopes.messagescoped.api.scope.MessageScoped;
+
 @ApplicationScoped
 public class MessageScopedLifecycleController {
 	private static final AtomicInteger COUNTER = new AtomicInteger(0);
 	private static final ThreadLocal<String> SCOPE_KEYS = new ThreadLocal<>();
+	private static volatile Bean<?> CACHED_BEAN;
 
 	@Inject
 	private BeanManager beanManager;
@@ -37,7 +38,7 @@ public class MessageScopedLifecycleController {
 	@Destroyed(MessageScoped.class)
 	private Event<Object> scopeDestroyed;
 
-	public void activate(final String unitName, final String displayName) {
+	protected void activate(final String unitName, final String displayName) {
 		@SuppressWarnings("unchecked")
 		final ScopeContext<String> context = (ScopeContext<String>) beanManager.getContext(MessageScoped.class);
 
@@ -50,7 +51,7 @@ public class MessageScopedLifecycleController {
 		SCOPE_KEYS.set(scopeKey);
 	}
 
-	public void deactivate(final String unitName, final String displayName) {
+	protected void deactivate(final String unitName, final String displayName) {
 		@SuppressWarnings("unchecked")
 		final ScopeContext<String> context = (ScopeContext<String>) beanManager.getContext(MessageScoped.class);
 
@@ -64,15 +65,7 @@ public class MessageScopedLifecycleController {
 		scopeDestroyed.fire(scopeKey);
 	}
 
-	private static String newScopeKey(final String unitName, final String displayName) {
-		final int seq = COUNTER.getAndIncrement();
-		final int salt = ThreadLocalRandom.current().nextInt();
-		return unitName + ":" + displayName + ":" + Integer.toHexString(seq ^ salt);
-	}
-
-	private static volatile Bean<?> CACHED_BEAN;
-
-	static Bean<?> getBean(final BeanManager bm) {
+	static final Bean<?> getBean(final BeanManager bm) {
 		Bean<?> bean = CACHED_BEAN;
 		if (bean == null) {
 			synchronized (MessageScopedLifecycleController.class) {
@@ -86,7 +79,13 @@ public class MessageScopedLifecycleController {
 		return bean;
 	}
 
-	static MessageScopedLifecycleController obtain(final BeanManager bm) {
+	static final String newScopeKey(final String unitName, final String displayName) {
+		final int seq = COUNTER.getAndIncrement();
+		final int salt = ThreadLocalRandom.current().nextInt();
+		return unitName + ":" + displayName + ":" + Integer.toHexString(seq ^ salt);
+	}
+
+	static final MessageScopedLifecycleController obtain(final BeanManager bm) {
 		@SuppressWarnings("unchecked")
 		final Bean<MessageScopedLifecycleController> bean = (Bean<MessageScopedLifecycleController>) getBean(bm);
 		final CreationalContext<MessageScopedLifecycleController> ctx = bm.createCreationalContext(bean);

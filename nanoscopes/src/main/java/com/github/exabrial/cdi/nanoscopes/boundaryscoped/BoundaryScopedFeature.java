@@ -1,5 +1,7 @@
 package com.github.exabrial.cdi.nanoscopes.boundaryscoped;
 
-public enum BoundaryScopedFeature {
+import com.github.exabrial.cdi.nanoscopes.NanoscopesFeature;
+
+public interface BoundaryScopedFeature extends NanoscopesFeature {
 
 }

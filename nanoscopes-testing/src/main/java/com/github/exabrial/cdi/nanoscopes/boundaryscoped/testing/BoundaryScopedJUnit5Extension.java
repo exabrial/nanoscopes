@@ -2,16 +2,16 @@ package com.github.exabrial.cdi.nanoscopes.boundaryscoped.testing;
 
 import java.lang.reflect.Method;
 
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
-
-import com.github.exabrial.cdi.nanoscopes.boundaryscoped.Boundary;
-
 import jakarta.enterprise.context.spi.CreationalContext;
 import jakarta.enterprise.inject.spi.Bean;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.enterprise.inject.spi.CDI;
+
+import org.junit.jupiter.api.extension.AfterEachCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
+
+import com.github.exabrial.cdi.nanoscopes.boundaryscoped.api.interceptor.Boundary;
 
 public class BoundaryScopedJUnit5Extension implements BeforeEachCallback, AfterEachCallback {
 	@Override
@@ -24,7 +24,7 @@ public class BoundaryScopedJUnit5Extension implements BeforeEachCallback, AfterE
 		crossBoundary(context, false);
 	}
 
-	private void crossBoundary(final ExtensionContext context, final boolean direction) {
+	static final void crossBoundary(final ExtensionContext context, final boolean direction) {
 		if (isBoundary(context)) {
 			final String unitName = context.getTestClass().map(Class::getSimpleName).orElse("<anon>");
 			final String displayName = context.getDisplayName();
@@ -51,7 +51,7 @@ public class BoundaryScopedJUnit5Extension implements BeforeEachCallback, AfterE
 		}
 	}
 
-	private boolean isBoundary(final ExtensionContext context) {
+	static final boolean isBoundary(final ExtensionContext context) {
 		return context.getTestMethod().map((final Method method) -> method.isAnnotationPresent(Boundary.class)).orElse(false)
 				|| context.getTestClass().map((final Class<?> clazz) -> clazz.isAnnotationPresent(Boundary.class)).orElse(false);
 	}

@@ -22,6 +22,7 @@ import com.github.exabrial.cdi.nanoscopes.boundaryscoped.api.scope.BoundaryScope
 public class BoundaryScopedLifecycleController {
 	private static final AtomicInteger COUNTER = new AtomicInteger(0);
 	private static final ThreadLocal<String> SCOPE_KEYS = new ThreadLocal<>();
+	private static volatile Bean<?> CACHED_BEAN;
 
 	@Inject
 	private BeanManager beanManager;
@@ -37,7 +38,7 @@ public class BoundaryScopedLifecycleController {
 	@Destroyed(BoundaryScoped.class)
 	private Event<Object> scopeDestroyed;
 
-	public void activate(final String unitName, final String displayName) {
+	protected void activate(final String unitName, final String displayName) {
 		@SuppressWarnings("unchecked")
 		final ScopeContext<String> context = (ScopeContext<String>) beanManager.getContext(BoundaryScoped.class);
 
@@ -50,7 +51,7 @@ public class BoundaryScopedLifecycleController {
 		SCOPE_KEYS.set(scopeKey);
 	}
 
-	public void deactivate(final String unitName, final String displayName) {
+	protected void deactivate(final String unitName, final String displayName) {
 		@SuppressWarnings("unchecked")
 		final ScopeContext<String> context = (ScopeContext<String>) beanManager.getContext(BoundaryScoped.class);
 
@@ -64,15 +65,7 @@ public class BoundaryScopedLifecycleController {
 		scopeDestroyed.fire(scopeKey);
 	}
 
-	private static String newScopeKey(final String unitName, final String displayName) {
-		final int seq = COUNTER.getAndIncrement();
-		final int salt = ThreadLocalRandom.current().nextInt();
-		return unitName + ":" + displayName + ":" + Integer.toHexString(seq ^ salt);
-	}
-
-	private static volatile Bean<?> CACHED_BEAN;
-
-	static Bean<?> getBean(final BeanManager bm) {
+	static final Bean<?> getBean(final BeanManager bm) {
 		Bean<?> bean = CACHED_BEAN;
 		if (bean == null) {
 			synchronized (BoundaryScopedLifecycleController.class) {
@@ -86,7 +79,13 @@ public class BoundaryScopedLifecycleController {
 		return bean;
 	}
 
-	static BoundaryScopedLifecycleController obtain(final BeanManager bm) {
+	static final String newScopeKey(final String unitName, final String displayName) {
+		final int seq = COUNTER.getAndIncrement();
+		final int salt = ThreadLocalRandom.current().nextInt();
+		return unitName + ":" + displayName + ":" + Integer.toHexString(seq ^ salt);
+	}
+
+	static final BoundaryScopedLifecycleController obtain(final BeanManager bm) {
 		@SuppressWarnings("unchecked")
 		final Bean<BoundaryScopedLifecycleController> bean = (Bean<BoundaryScopedLifecycleController>) getBean(bm);
 		final CreationalContext<BoundaryScopedLifecycleController> ctx = bm.createCreationalContext(bean);
