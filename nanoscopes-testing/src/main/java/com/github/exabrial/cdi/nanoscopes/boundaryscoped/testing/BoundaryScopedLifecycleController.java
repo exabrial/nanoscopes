@@ -4,11 +4,6 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.slf4j.Logger;
-import org.tomitribe.microscoped.core.ScopeContext;
-
-import com.github.exabrial.cdi.nanoscopes.boundaryscoped.BoundaryScoped;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Destroyed;
 import jakarta.enterprise.context.Initialized;
@@ -17,6 +12,11 @@ import jakarta.enterprise.event.Event;
 import jakarta.enterprise.inject.spi.Bean;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
+
+import org.slf4j.Logger;
+import org.tomitribe.microscoped.core.ScopeContext;
+
+import com.github.exabrial.cdi.nanoscopes.boundaryscoped.api.scope.BoundaryScoped;
 
 @ApplicationScoped
 public class BoundaryScopedLifecycleController {

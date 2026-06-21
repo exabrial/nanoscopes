@@ -1,2 +1,3 @@
-com.github.exabrial.cdi.nanoscopes.boundaryscoped.BoundaryScopedExtension
-com.github.exabrial.cdi.nanoscopes.messagescoped.MessageScopedExtension
+com.github.exabrial.cdi.nanoscopes.boundaryscoped.extension.BoundaryScopedExtension
+com.github.exabrial.cdi.nanoscopes.messagescoped.extension.MessageScopedExtension
+

@@ -1,4 +1,4 @@
-package com.github.exabrial.cdi.nanoscopes.boundaryscoped;
+package com.github.exabrial.cdi.nanoscopes.boundaryscoped.api;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
@@ -11,10 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.tomitribe.microscoped.core.ScopeContext;
-
-import lombok.Getter;
-
 import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.spi.CreationalContext;
 import jakarta.enterprise.inject.spi.Annotated;
@@ -22,6 +18,12 @@ import jakarta.enterprise.inject.spi.Bean;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.enterprise.inject.spi.InjectionPoint;
+
+import org.tomitribe.microscoped.core.ScopeContext;
+
+import com.github.exabrial.cdi.nanoscopes.boundaryscoped.api.scope.BoundaryScoped;
+
+import lombok.Getter;
 
 public class BoundaryScopedProxy<I, K extends I> implements InvocationHandler {
 	private static final Set<String> BASIC_METHODS = Set.of("finalize", "wait", "notifyAll", "notify", "clone", "getClass", "hashCode",

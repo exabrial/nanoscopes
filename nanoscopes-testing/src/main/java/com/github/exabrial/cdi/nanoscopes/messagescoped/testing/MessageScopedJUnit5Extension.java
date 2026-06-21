@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-import com.github.exabrial.cdi.nanoscopes.messagescoped.MessageBoundary;
+import com.github.exabrial.cdi.nanoscopes.messagescoped.api.interceptor.MessageBoundary;
 
 import jakarta.enterprise.context.spi.CreationalContext;
 import jakarta.enterprise.inject.spi.Bean;

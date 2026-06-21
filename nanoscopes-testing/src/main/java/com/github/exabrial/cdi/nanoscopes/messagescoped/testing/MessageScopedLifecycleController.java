@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
 import org.tomitribe.microscoped.core.ScopeContext;
 
-import com.github.exabrial.cdi.nanoscopes.messagescoped.MessageScoped;
+import com.github.exabrial.cdi.nanoscopes.messagescoped.api.scope.MessageScoped;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Destroyed;

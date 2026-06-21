@@ -1,9 +1,6 @@
-package com.github.exabrial.cdi.nanoscopes.messagescoped;
+package com.github.exabrial.cdi.nanoscopes.messagescoped.interceptor;
 
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.slf4j.Logger;
-import org.tomitribe.microscoped.core.ScopeContext;
 
 import jakarta.annotation.Priority;
 import jakarta.enterprise.context.Destroyed;
@@ -14,6 +11,12 @@ import jakarta.inject.Inject;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
+
+import org.slf4j.Logger;
+import org.tomitribe.microscoped.core.ScopeContext;
+
+import com.github.exabrial.cdi.nanoscopes.messagescoped.api.interceptor.MessageBoundary;
+import com.github.exabrial.cdi.nanoscopes.messagescoped.api.scope.MessageScoped;
 
 @Interceptor
 @MessageBoundary
