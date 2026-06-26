@@ -50,8 +50,8 @@ public class MessageScopedInterceptor {
 			try {
 				result = ctx.proceed();
 			} finally {
-				context.destroy(newScopeKey);
 				scopeDestroyed.fire(newScopeKey);
+				context.destroy(newScopeKey);
 				context.exit(null);
 				log.trace("aroundInvoke() exited MessageScope:{}", context);
 			}
