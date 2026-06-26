@@ -1,0 +1,1 @@
+package com.github.exabrial.cdi.nanoscopes.boundaryscoped.testing;

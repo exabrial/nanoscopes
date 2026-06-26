@@ -14,21 +14,20 @@ import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tomitribe.microscoped.core.ScopeContext;
 
 import com.github.exabrial.cdi.nanoscopes.boundaryscoped.api.scope.BoundaryScoped;
 
 @ApplicationScoped
 public class BoundaryScopedLifecycleController {
+	private static final Logger log = LoggerFactory.getLogger(BoundaryScopedLifecycleController.class);
 	private static final AtomicInteger COUNTER = new AtomicInteger(0);
 	private static final ThreadLocal<String> SCOPE_KEYS = new ThreadLocal<>();
 	private static volatile Bean<?> CACHED_BEAN;
 
 	@Inject
 	private BeanManager beanManager;
-
-	@Inject
-	private Logger log;
 
 	@Inject
 	@Initialized(BoundaryScoped.class)

@@ -1,4 +1,4 @@
-package com.github.exabrial.cdi.nanoscopes.testscoped;
+package com.github.exabrial.cdi.nanoscopes.testscoped.extension;
 
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.inject.spi.AfterBeanDiscovery;

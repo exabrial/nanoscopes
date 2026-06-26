@@ -23,9 +23,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tomitribe.microscoped.core.ScopeContext;
 
-import com.github.exabrial.cdi.nanoscopes.testscoped.TestScopedCdiPortableExtension;
 import com.github.exabrial.cdi.nanoscopes.testscoped.api.TestScoped;
 import com.github.exabrial.cdi.nanoscopes.testscoped.api.TestUnitScoped;
+import com.github.exabrial.cdi.nanoscopes.testscoped.extension.TestScopedCdiPortableExtension;
 
 @ApplicationScoped
 public class TestScopedLifecycleController {

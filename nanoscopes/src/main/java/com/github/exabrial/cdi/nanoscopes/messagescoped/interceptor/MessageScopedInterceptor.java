@@ -13,6 +13,7 @@ import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tomitribe.microscoped.core.ScopeContext;
 
 import com.github.exabrial.cdi.nanoscopes.messagescoped.api.interceptor.MessageBoundary;
@@ -22,11 +23,10 @@ import com.github.exabrial.cdi.nanoscopes.messagescoped.api.scope.MessageScoped;
 @MessageBoundary
 @Priority(Interceptor.Priority.LIBRARY_BEFORE - 20)
 public class MessageScopedInterceptor {
+	private static final Logger log = LoggerFactory.getLogger(MessageScopedInterceptor.class);
 	private static final AtomicInteger counter = new AtomicInteger(0);
 	@Inject
 	private BeanManager beanManager;
-	@Inject
-	private Logger log;
 	@Inject
 	@Initialized(MessageScoped.class)
 	private Event<Object> scopeInitialized;

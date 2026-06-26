@@ -14,6 +14,7 @@ import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tomitribe.microscoped.core.ScopeContext;
 
 import com.github.exabrial.cdi.nanoscopes.boundaryscoped.api.interceptor.Boundary;
@@ -23,11 +24,10 @@ import com.github.exabrial.cdi.nanoscopes.boundaryscoped.api.scope.BoundaryScope
 @Boundary
 @Priority(Interceptor.Priority.LIBRARY_BEFORE - 10)
 public class BoundaryScopedInterceptor {
+	private static final Logger log = LoggerFactory.getLogger(BoundaryScopedInterceptor.class);
 	private static final AtomicInteger counter = new AtomicInteger(0);
 	@Inject
 	private BeanManager beanManager;
-	@Inject
-	private Logger log;
 	@Inject
 	@Initialized(BoundaryScoped.class)
 	private Event<Object> scopeInitialized;
