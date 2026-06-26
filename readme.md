@@ -71,6 +71,18 @@ Test support for the `nanoscopes` scopes. In production a `@BoundaryScoped` or `
 
 Register the extension on your test and mark the test method (or the whole class) with the matching boundary annotation. The context is entered only for tests that carry the annotation.
 
+The bean under test is an ordinary `@BoundaryScoped` bean:
+
+```java
+@BoundaryScoped
+public class AddressFormatter {
+
+  public String format(final RawAddress rawAddress) {
+    // build and return the formatted address
+  }
+}
+```
+
 ```java
 @Cdi(disableDiscovery = true,
 			classes = { AddressFormatter.class },
